@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1120">
+<title>IAT 2028 — Study Command Centre</title>
+<style>
+:root{--bg:#0b1120;--panel:#121c2e;--panel2:#0f1727;--text:#e7edf7;--muted:#9aa9bf;--border:#26364d;--blue:#60a5fa;--purple:#a78bfa;--green:#34d399;--yellow:#fbbf24;--red:#fb7185;--input:#0b1424;--shadow:0 12px 30px #0002}
+body.light{--bg:#f3f6fb;--panel:#fff;--panel2:#f7f9fd;--text:#142033;--muted:#617089;--border:#d8e0ed;--blue:#2563eb;--purple:#7c3aed;--green:#059669;--yellow:#b77908;--red:#dc3545;--input:#f8fafc;--shadow:0 8px 24px #23314d0d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial,sans-serif;transition:background .2s,color .2s}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid transparent;border-radius:9px;padding:9px 12px;background:#2563eb;color:#fff;font-weight:650}button:hover{filter:brightness(1.08)}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #60a5fa77;outline-offset:2px}.secondary{background:var(--panel2);color:var(--text);border-color:var(--border)}.danger{background:#9f1239}.tiny{font-size:12px;padding:5px 8px}.wrap{max-width:1400px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}.brand h1{font-size:clamp(24px,4vw,34px);margin:0;color:var(--blue);letter-spacing:-.04em}.brand p{margin:4px 0 0;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap}.card,.section{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow);min-width:0}.card{margin-bottom:16px}.section{margin-bottom:16px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.section h2,.card h2{margin:0 0 12px;font-size:18px}.muted,small{color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.stat{background:var(--panel2);border:1px solid var(--border);border-radius:12px;padding:13px}.stat .num{font-size:26px;font-weight:800;letter-spacing:-.04em}.stat small{display:block}.grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.progress{height:9px;background:var(--border);border-radius:20px;overflow:hidden;margin:8px 0}.progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,#60a5fa,#34d399);transition:width .2s}.subject-progress{height:8px;display:flex;background:var(--border);border-radius:20px;overflow:hidden;margin:8px 0}.subject-progress span{height:100%}.p0{background:var(--red)}.p1{background:var(--yellow)}.p2{background:var(--green)}.nav{display:flex;gap:7px;overflow:auto;padding:3px 0 14px;margin-bottom:4px}.nav button{white-space:nowrap;background:var(--panel);color:var(--muted);border-color:var(--border)}.nav button.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}.view{display:none}.view.active{display:block}.field{display:flex;flex-direction:column;gap:5px;min-width:0}.field label,.label{font-size:12px;color:var(--muted);font-weight:700}.field input,.field select,.field textarea,input,select,textarea{background:var(--input);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:9px;min-width:0;max-width:100%}textarea{resize:vertical;width:100%}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.formgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}.task-list{display:grid;gap:8px}.item{display:flex;align-items:flex-start;gap:10px;border:1px solid var(--border);background:var(--panel2);border-radius:10px;padding:10px}.item .grow{flex:1;min-width:0}.item-title{font-weight:700;overflow-wrap:anywhere}.item.done .item-title{text-decoration:line-through;color:var(--muted)}.pill{display:inline-flex;align-items:center;border:1px solid var(--border);border-radius:999px;padding:2px 8px;font-size:11px;color:var(--muted);gap:4px}.pill.red{color:var(--red)}.pill.yellow{color:var(--yellow)}.pill.green{color:var(--green)}.empty{padding:18px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:10px}.chapter{border:1px solid var(--border);border-radius:12px;margin-top:10px;overflow:hidden}.chapter summary{cursor:pointer;list-style:none;padding:12px;display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--panel2)}.chapter summary::-webkit-details-marker{display:none}.chapter-body{padding:12px}.chapter-title{font-weight:750}.chapter-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:5px}.subtopic{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}.subtopic:last-child{border-bottom:0}.subtopic select{max-width:165px}.mastery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}.mastery-box{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:9px}.mastery-box label{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}.mastery-box select{width:100%}.filters{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.filters input{flex:1;min-width:180px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:560px}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--border);vertical-align:top}th{font-size:12px;color:var(--muted)}.bar-chart{display:grid;gap:9px}.bar-row{display:grid;grid-template-columns:minmax(95px,140px) 1fr 55px;align-items:center;gap:10px}.bar-track{height:10px;background:var(--border);border-radius:10px;overflow:hidden}.bar-track span{display:block;height:100%;background:var(--blue)}.alert{padding:12px;border:1px solid #b77908;background:#b7790818;border-radius:10px;margin-bottom:12px}.footer{padding:16px 0;color:var(--muted);font-size:12px}.hidden{display:none!important}.right{margin-left:auto}.note{font-size:12px;color:var(--muted)}.subject-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.subject-heading h2{margin:0}
+@media(max-width:850px){.grid2{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.formgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.wrap{padding:12px}.card,.section{padding:13px;border-radius:12px}.stats{gap:7px}.stat .num{font-size:22px}.formgrid{grid-template-columns:1fr 1fr}.mastery-grid{grid-template-columns:1fr}.subtopic{grid-template-columns:1fr}.subtopic select{max-width:none;width:100%}.actions button{flex:1}.bar-row{grid-template-columns:85px 1fr 40px;gap:6px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="brand"><h1>🚀 IAT Study Command Centre</h1><p>Plan deliberately. Learn deeply. Review consistently.</p><p class="muted">Target date: <strong id="targetDisplay">1 February 2028</strong> <button class="secondary tiny" id="editTarget">Edit</button></p></div>
+  <div class="actions"><button class="secondary" id="themeBtn">☀️ Light mode</button><button class="secondary" id="exportBtn">Export backup</button><button class="secondary" id="importBtn">Import backup</button><input id="importFile" type="file" accept=".json,application/json" class="hidden"></div>
+</header>
+
+<section class="card">
+  <h2>⏳ Time remaining</h2>
+  <div class="stats" id="countdownStats">
+    <div class="stat"><div class="num" id="months">—</div><small>Months</small></div><div class="stat"><div class="num" id="days">—</div><small>Days</small></div><div class="stat"><div class="num" id="hours">—</div><small>Hours</small></div><div class="stat"><div class="num" id="mins">—</div><small>Minutes</small></div>
+  </div>
+  <div class="note" style="margin-top:8px">Countdown updates once per second using the device clock.</div>
+</section>
+
+<nav class="nav" aria-label="Main sections">
+  <button class="active" data-view="dashboard">Dashboard</button><button data-view="planner">Planner</button><button data-view="syllabus">Syllabus & mastery</button><button data-view="revision">Revision</button><button data-view="analytics">Practice analytics</button><button data-view="settings">Backup & settings</button>
+</nav>
+
+<main>
+<section class="view active" id="view-dashboard">
+  <div id="revisionAlert" class="alert hidden"></div>
+  <div class="card"><h2>📊 Overall progress</h2><div class="row" style="justify-content:space-between"><span><strong id="masteredCount">0</strong> chapter(s) mastered</span><span id="overallPct">0%</span></div><div class="progress"><span id="overallBar"></span></div><div class="note" id="coverageNote">Coverage is tracked separately from exam readiness.</div></div>
+  <div class="stats" style="margin-bottom:16px">
+    <div class="stat"><div class="num" id="todayTaskCount">0/0</div><small>Today's tasks completed</small></div><div class="stat"><div class="num" id="todayMinutes">0 min</div><small>Study time today</small></div><div class="stat"><div class="num" id="dueCount">0</div><small>Revisions due</small></div><div class="stat"><div class="num" id="weakCount">0</div><small>Weak / at-risk chapters</small></div>
+  </div>
+  <div class="grid2">
+    <div class="card"><div class="section-head"><h2>🎯 Today's plan</h2><button class="secondary tiny" data-goto="planner">Open planner</button></div><div id="todayTasks" class="task-list"></div></div>
+    <div class="card"><div class="section-head"><h2>🔁 Revisions due</h2><button class="secondary tiny" data-goto="revision">Review queue</button></div><div id="todayRevisions" class="task-list"></div></div>
+  </div>
+  <div class="card"><h2>🧱 Weakest chapters</h2><p class="note">Based on your self-assessed theory, practice and revision states, plus logged question accuracy where available.</p><div id="weakTopics" class="task-list" style="margin-top:10px"></div></div>
+  <div class="card"><h2>📈 Subject coverage</h2><div id="subjectOverview" class="bar-chart"></div></div>
+  <div class="card"><h2>🗓️ Monthly goals</h2><div id="monthlyGoalsList" class="task-list"></div><form id="monthlyGoalForm" class="row" style="margin-top:10px"><input id="newMonthlyGoal" maxlength="180" required placeholder="Add a monthly goal..." style="flex:1"><button type="submit">Add goal</button></form><div class="progress"><span id="monthBar"></span></div><div class="note" id="monthPct">0% completed</div></div>
+  <div class="card"><h2>📝 Quick study session</h2><form id="sessionForm"><div class="formgrid"><div class="field"><label for="sessionSubject">Subject</label><select id="sessionSubject"></select></div><div class="field"><label for="sessionChapter">Chapter</label><select id="sessionChapter"></select></div><div class="field"><label for="sessionMinutes">Minutes studied</label><input id="sessionMinutes" type="number" min="1" max="1440" required value="45"></div><div class="field"><label for="sessionNotes">What did you do?</label><input id="sessionNotes" maxlength="240" placeholder="e.g. vector components + 12 problems"></div></div><button type="submit">Log study session</button></form><div id="recentSessions" class="task-list" style="margin-top:12px"></div></div>
+</section>
+
+<section class="view" id="view-planner">
+  <div class="card"><h2>🗓️ Add a planned task</h2><form id="taskForm"><div class="formgrid"><div class="field"><label for="taskDate">Date</label><input id="taskDate" type="date" required></div><div class="field"><label for="taskSubject">Subject</label><select id="taskSubject"></select></div><div class="field"><label for="taskChapter">Chapter</label><select id="taskChapter"></select></div><div class="field"><label for="taskMinutes">Planned minutes</label><input id="taskMinutes" type="number" min="1" max="1440" value="45" required></div></div><div class="formgrid"><div class="field" style="grid-column:span 2"><label for="taskTitle">Task</label><input id="taskTitle" required maxlength="180" placeholder="e.g. Learn vector resolution and solve examples"></div><div class="field"><label for="taskKind">Type</label><select id="taskKind"><option>Theory</option><option>Practice</option><option>Revision</option><option>Mock test</option><option>Review mistakes</option><option>Curiosity / exploration</option></select></div><div class="field"><label for="taskPriority">Priority</label><select id="taskPriority"><option>Normal</option><option>High</option><option>Low</option></select></div></div><button type="submit">Add task</button></form></div>
+  <div class="card"><div class="section-head"><h2>Tasks</h2><div class="row"><label class="note" for="plannerDate">Show date</label><input id="plannerDate" type="date"><button id="showToday" class="secondary tiny">Today</button><button id="showWeek" class="secondary tiny">This week</button><button id="showAllTasks" class="secondary tiny">All</button></div></div><div id="plannerSummary" class="note" style="margin:8px 0 12px"></div><div id="plannerTasks" class="task-list"></div></div>
+  <div class="card"><h2>🗓️ Weekly review</h2><div id="weeklyReview"></div></div>
+</section>
+
+<section class="view" id="view-syllabus">
+  <div class="card"><h2>📚 Syllabus & chapter mastery</h2><p class="note">Statuses are independent: theory, practice and revision are not interchangeable. Chapter status is calculated from those fields and remains separate from subtopic coverage.</p><div class="filters"><input id="chapterSearch" type="search" placeholder="Search subjects, chapters or subtopics"><select id="subjectFilter"><option value="all">All subjects</option></select><select id="chapterFilter"><option value="all">All chapters</option><option value="weak">Weak / at risk</option><option value="starred">Priority starred</option><option value="incomplete">Not exam-ready</option><option value="ready">Exam-ready</option></select></div><div id="syllabusList"></div></div>
+</section>
+
+<section class="view" id="view-revision">
+  <div class="card"><h2>🔁 Revision queue</h2><p class="note">A successful review schedules the next interval. If recall is weak, the next review is sooner. You can also schedule a review manually.</p><div class="formgrid"><div class="field"><label for="revisionSubject">Subject</label><select id="revisionSubject"></select></div><div class="field"><label for="revisionChapter">Chapter</label><select id="revisionChapter"></select></div><div class="field"><label for="revisionDate">Next review date</label><input type="date" id="revisionDate"></div><div class="field"><label for="revisionNote">Focus</label><input id="revisionNote" maxlength="160" placeholder="e.g. sign conventions"></div></div><button id="scheduleRevision">Schedule revision</button><div class="filters"><select id="revisionFilter"><option value="due">Due and overdue</option><option value="all">All scheduled</option><option value="future">Upcoming</option></select></div><div id="revisionList" class="task-list"></div></div>
+  <div class="card"><h2>Revision history</h2><div id="revisionHistory" class="task-list"></div></div>
+</section>
+
+<section class="view" id="view-analytics">
+  <div class="grid2">
+    <div class="card"><h2>➕ Log a practice set</h2><form id="practiceForm"><div class="formgrid"><div class="field"><label for="practiceDate">Date</label><input type="date" id="practiceDate" required></div><div class="field"><label for="practiceSubject">Subject</label><select id="practiceSubject"></select></div><div class="field"><label for="practiceChapter">Chapter</label><select id="practiceChapter"></select></div><div class="field"><label for="practiceSource">Source / test</label><input id="practiceSource" maxlength="100" placeholder="HCV, NCERT, mock..."></div></div><div class="formgrid"><div class="field"><label for="qAttempted">Attempted</label><input id="qAttempted" type="number" min="0" max="100000" required value="20"></div><div class="field"><label for="qCorrect">Correct</label><input id="qCorrect" type="number" min="0" max="100000" required value="14"></div><div class="field"><label for="qWrong">Wrong</label><input id="qWrong" type="number" min="0" max="100000" value="6"></div><div class="field"><label for="qTime">Minutes used</label><input id="qTime" type="number" min="0" max="1440" value="30"></div></div><div class="field"><label for="practiceMistakes">Mistakes / takeaway</label><textarea id="practiceMistakes" rows="2" maxlength="1000" placeholder="Conceptual gap, calculation error, guessed answer..."></textarea></div><div style="margin-top:10px"><button type="submit">Save practice set</button></div></form></div>
+    <div class="card"><h2>🧪 Log a mock test</h2><form id="mockForm"><div class="formgrid"><div class="field"><label for="mockDate">Date</label><input id="mockDate" type="date" required></div><div class="field"><label for="mockName">Test name</label><input id="mockName" required maxlength="120" placeholder="Full mock / sectional"></div><div class="field"><label for="mockScore">Score</label><input id="mockScore" type="number" required step="any"></div><div class="field"><label for="mockMax">Maximum score</label><input id="mockMax" type="number" min="0.01" required step="any"></div></div><div class="formgrid"><div class="field"><label for="mockAttempted">Attempted</label><input id="mockAttempted" type="number" min="0" value="0"></div><div class="field"><label for="mockCorrect">Correct</label><input id="mockCorrect" type="number" min="0" value="0"></div><div class="field"><label for="mockWrong">Wrong</label><input id="mockWrong" type="number" min="0" value="0"></div><div class="field"><label for="mockDuration">Duration (minutes)</label><input id="mockDuration" type="number" min="0" value="180"></div></div><div class="field"><label for="mockNotes">Reflection / recurring errors</label><textarea id="mockNotes" rows="2" maxlength="1000"></textarea></div><div style="margin-top:10px"><button type="submit">Save mock test</button></div></form></div>
+  </div>
+  <div class="stats" style="margin-bottom:16px"><div class="stat"><div class="num" id="practiceSets">0</div><small>Practice sets logged</small></div><div class="stat"><div class="num" id="practiceAccuracy">—</div><small>Overall practice accuracy</small></div><div class="stat"><div class="num" id="mockCount">0</div><small>Mock tests logged</small></div><div class="stat"><div class="num" id="latestMock">—</div><small>Latest mock score</small></div></div>
+  <div class="grid2"><div class="card"><h2>Practice accuracy by subject</h2><div id="accuracyBySubject" class="bar-chart"></div></div><div class="card"><h2>Mock score trend</h2><div id="mockTrend" class="bar-chart"></div><p class="note">Scores are shown as percentage of each test's maximum, allowing tests with different maximum scores to be compared. This is not a standardized difficulty adjustment.</p></div></div>
+  <div class="card"><h2>Practice history</h2><div id="practiceHistory" class="table-wrap"></div></div><div class="card"><h2>Mock-test history</h2><div id="mockHistory" class="table-wrap"></div></div>
+  <div class="card"><h2>🧠 Error log</h2><p class="note">Use this for recurring mistakes and the corrective action you will take.</p><textarea id="errorLog" rows="5" maxlength="10000" placeholder="Date — topic — mistake — why it happened — correction"></textarea></div>
+</section>
+
+<section class="view" id="view-settings">
+  <div class="card"><h2>💾 Data safety</h2><p>Progress is saved in this browser's local storage. Export backups regularly, especially before clearing browser data or switching devices.</p><div class="row" style="margin-top:12px"><button id="exportBtn2">Export JSON backup</button><button class="secondary" id="importBtn2">Import JSON backup</button><button class="danger" id="resetBtn">Reset all tracker data</button></div><p class="note" style="margin-top:10px">Import recognizes compatible legacy progress, validates the selected backup, and downloads a backup of current data before replacing it. A backup is downloaded before replacing data through import.</p></div>
+  <div class="card"><h2>⚙️ Preferences</h2><div class="formgrid"><div class="field"><label for="settingsTarget">Target date</label><input type="date" id="settingsTarget"></div><div class="field"><label for="studyGoal">Daily study-time goal (minutes)</label><input type="number" id="studyGoal" min="1" max="1440"></div><div class="field"><label for="accuracyGoal">Practice accuracy goal (%)</label><input type="number" id="accuracyGoal" min="1" max="100"></div></div><button id="saveSettings">Save preferences</button></div>
+  <div class="card"><h2>About progress calculations</h2><ul><li>Chapter mastered means theory, practice and revision are all marked complete.</li><li>Question accuracy is correct answers divided by attempted questions across logged practice sets.</li><li>Mock trend is score divided by maximum score; it does not account for differences in test difficulty.</li><li>Weak topics are a study aid based on incomplete mastery and recorded practice accuracy, not a prediction of exam results.</li></ul></div>
+</section>
+</main>
+<footer class="footer">IAT Study Command Centre · Local-first tracker · Keep independent backups of important progress.</footer>
+</div>
+<script>
+'use strict';
+const STORAGE_KEY='iat2028';
+const LEGACY_TARGET_KEY='iat_target_date';
+const todayISO=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+const uid=()=>`${Date.now().toString(36)}-${Math.random().toString(36).slice(2,8)}`;
+const topics={
+"Mathematics":[
+["Class XI — Sets","Sets and representations","Subsets and intervals","Operations on sets"],
+["Class XI — Relations and Functions","Ordered pairs and Cartesian products","Relations and their properties","Functions and their graphs"],
+["Class XI — Trigonometric Functions","Angles and radian measure","Trigonometric functions and identities","Graphs of trigonometric functions"],
+["Class XI — Complex Numbers and Quadratic Equations","Complex numbers and algebra","Argand plane and modulus","Quadratic equations"],
+["Class XI — Linear Inequalities","Linear inequalities in one variable","Graphical solutions of inequalities"],
+["Class XI — Permutations and Combinations","Fundamental counting principle","Permutations","Combinations"],
+["Class XI — Binomial Theorem","Binomial expansion","General term and coefficients"],
+["Class XI — Sequences and Series","Arithmetic and geometric progressions","Means","Series and special sums"],
+["Class XI — Straight Lines","Slope and forms of a line","Angle between lines","Distance of a point from a line"],
+["Class XI — Conic Sections","Circle and conic sections","Parabola","Ellipse and hyperbola"],
+["Class XI — Introduction to Three Dimensional Geometry","Coordinates in three dimensions","Distance between points","Section formula"],
+["Class XI — Limits and Derivatives","Limits","Derivatives from first principles","Basic differentiation"],
+["Class XI — Statistics","Measures of dispersion","Variance and standard deviation"],
+["Class XI — Probability","Random experiments and events","Probability of an event"],
+["Class XII — Relations and Functions","Types of relations","Types of functions","Composition and invertibility"],
+["Class XII — Inverse Trigonometric Functions","Principal value branches","Domains and ranges","Properties of inverse trigonometric functions"],
+["Class XII — Matrices","Types of matrices","Matrix operations","Transpose and symmetric matrices"],
+["Class XII — Determinants","Determinants and properties","Minors and cofactors","Adjoint and inverse of a matrix"],
+["Class XII — Continuity and Differentiability","Continuity","Differentiability and chain rule","Implicit and logarithmic differentiation"],
+["Class XII — Applications of Derivatives","Rate of change","Increasing and decreasing functions","Tangents, normals and extrema"],
+["Class XII — Integrals","Indefinite integrals","Methods of integration","Definite integrals"],
+["Class XII — Applications of Integrals","Area under curves","Area between curves"],
+["Class XII — Differential Equations","Order and degree","Formation of differential equations","Solutions of differential equations"],
+["Class XII — Vector Algebra","Vectors and components","Dot product","Cross product"],
+["Class XII — Three Dimensional Geometry","Direction cosines and ratios","Lines in space","Angle between lines"],
+["Class XII — Linear Programming","Linear programming problems","Constraints and feasible regions","Graphical method"],
+["Class XII — Probability","Conditional probability","Multiplication theorem","Bayes theorem and random variables"]
+],
+"Physics":[
+["Class XI — Units and Measurements","SI units and measurement","Significant figures","Errors and dimensional analysis"],
+["Class XI — Motion in a Straight Line","Position, displacement and velocity","Acceleration","Motion graphs and equations"],
+["Class XI — Motion in a Plane","Vectors","Projectile motion","Relative velocity"],
+["Class XI — Laws of Motion","Newton’s laws of motion","Free-body diagrams","Friction and connected bodies"],
+["Class XI — Work, Energy and Power","Work and kinetic energy","Potential energy and conservation","Power and collisions"],
+["Class XI — System of Particles and Rotational Motion","Centre of mass","Torque and angular momentum","Moment of inertia and rolling motion"],
+["Class XI — Gravitation","Newton’s law of gravitation","Gravitational potential and energy","Satellites and escape speed"],
+["Class XI — Mechanical Properties of Solids","Stress and strain","Elastic moduli","Elastic potential energy"],
+["Class XI — Mechanical Properties of Fluids","Pressure and Pascal’s law","Viscosity","Surface tension and fluid flow"],
+["Class XI — Thermal Properties of Matter","Temperature and thermal expansion","Calorimetry","Heat transfer"],
+["Class XI — Thermodynamics","Thermal equilibrium and zeroth law","First law and thermodynamic processes","Second law and heat engines"],
+["Class XI — Kinetic Theory","Ideal gas equation","Molecular speeds","Degrees of freedom and equipartition"],
+["Class XI — Oscillations","Simple harmonic motion","Energy in SHM","Spring and pendulum systems"],
+["Class XI — Waves","Wave motion and speed","Superposition and standing waves","Sound waves and Doppler effect"],
+["Class XII — Electric Charges and Fields","Electric charge and Coulomb’s law","Electric field and field lines","Electric dipole and Gauss’s law"],
+["Class XII — Electrostatic Potential and Capacitance","Electric potential and potential energy","Equipotential surfaces","Capacitance and dielectrics"],
+["Class XII — Current Electricity","Current and drift velocity","Resistance and circuits","Kirchhoff’s laws and electrical power"],
+["Class XII — Moving Charges and Magnetism","Magnetic force on charges and currents","Biot–Savart and Ampère’s laws","Motion in magnetic fields"],
+["Class XII — Magnetism and Matter","Bar magnets and magnetic dipoles","Magnetisation and magnetic materials","Earth’s magnetism"],
+["Class XII — Electromagnetic Induction","Magnetic flux","Faraday’s and Lenz’s laws","Inductance and eddy currents"],
+["Class XII — Alternating Current","AC voltage and current","Reactance and impedance","Resonance and transformers"],
+["Class XII — Electromagnetic Waves","Displacement current","Electromagnetic wave properties","Electromagnetic spectrum"],
+["Class XII — Ray Optics and Optical Instruments","Reflection and refraction","Lenses and optical instruments","Optical phenomena"],
+["Class XII — Wave Optics","Huygens’ principle","Interference","Diffraction and polarisation"],
+["Class XII — Dual Nature of Radiation and Matter","Photoelectric effect","Einstein’s photoelectric equation","Wave nature of particles"],
+["Class XII — Atoms","Atomic models","Bohr model","Atomic spectra"],
+["Class XII — Nuclei","Nuclear size and composition","Mass defect and binding energy","Radioactivity, fission and fusion"],
+["Class XII — Semiconductor Electronics: Materials, Devices and Simple Circuits","Semiconductor materials","Junction diode and applications","Simple electronic circuits"]
+],
+"Chemistry":[
+["Class XI — Some Basic Concepts of Chemistry","Laws of chemical combination","Mole concept and molar mass","Stoichiometry and concentration"],
+["Class XI — Structure of Atom","Subatomic particles and atomic models","Quantum numbers and orbitals","Electronic configuration"],
+["Class XI — Classification of Elements and Periodicity in Properties","Modern periodic table","Periodic trends","Periodic properties"],
+["Class XI — Chemical Bonding and Molecular Structure","Ionic and covalent bonding","Lewis structures and VSEPR theory","Hybridisation and molecular orbital theory"],
+["Class XI — Thermodynamics","System and state functions","Enthalpy and Hess’s law","Entropy and Gibbs energy"],
+["Class XI — Equilibrium","Chemical equilibrium and equilibrium constants","Le Chatelier’s principle","Ionic equilibrium and pH"],
+["Class XI — Redox Reactions","Oxidation numbers","Balancing redox reactions","Redox reactions and electron transfer"],
+["Class XI — Organic Chemistry: Some Basic Principles and Techniques","Nomenclature and structural representation","Electronic effects and reaction intermediates","Purification and qualitative analysis"],
+["Class XI — Hydrocarbons","Alkanes","Alkenes and alkynes","Aromatic hydrocarbons"],
+["Class XII — Solutions","Concentration terms","Solubility and vapour pressure","Colligative properties"],
+["Class XII — Electrochemistry","Redox and electrochemical cells","Electrode potentials and Nernst equation","Conductance and electrolysis"],
+["Class XII — Chemical Kinetics","Rate of reaction and rate law","Order and integrated rate equations","Activation energy and Arrhenius equation"],
+["Class XII — Coordination Compounds","Ligands and nomenclature","Isomerism","Bonding and crystal field theory"],
+["Class XII — Haloalkanes and Haloarenes","Nomenclature and preparation","Nucleophilic substitution","Properties and reactions"],
+["Class XII — Alcohols, Phenols and Ethers","Structure and nomenclature","Preparation and reactions","Acidity and distinguishing reactions"],
+["Class XII — Aldehydes, Ketones and Carboxylic Acids","Carbonyl structure and reactivity","Nucleophilic addition","Carboxylic acid properties and reactions"],
+["Class XII — Amines","Classification and nomenclature","Basicity and preparation","Reactions and diazonium salts"],
+["Class XII — Biomolecules","Carbohydrates","Proteins and enzymes","Vitamins and nucleic acids"]
+],
+"Biology":[
+["Class XI — Cell: The Unit of Life","Cell theory and prokaryotic cells","Eukaryotic cell and organelles","Membrane structure and transport"],
+["Class XI — Biomolecules","Carbohydrates and lipids","Proteins and amino acids","Nucleic acids and enzymes"],
+["Class XI — Cell Cycle and Cell Division","Cell-cycle phases","Mitosis","Meiosis and significance"],
+["Class XII — Human Reproduction","Reproductive systems","Gametogenesis and menstrual cycle","Fertilisation, pregnancy and development"],
+["Class XII — Reproductive Health","Reproductive health and contraception","STIs and infertility","Assisted reproductive technologies"],
+["Class XII — Principles of Inheritance and Variation","Mendelian inheritance","Inheritance patterns and chromosomal theory","Linkage, recombination and genetic disorders"],
+["Class XII — Molecular Basis of Inheritance","DNA structure and replication","Transcription and translation","Gene regulation and human genome"],
+["Class XII — Microbes in Human Welfare","Household and industrial products","Sewage treatment and biogas","Biocontrol and biofertilisers"],
+["Class XII — Biotechnology: Principles and Processes","Tools of recombinant DNA technology","Cloning vectors and PCR","Bioreactors and downstream processing"],
+["Class XII — Ecosystem","Ecosystem structure and productivity","Decomposition and energy flow","Ecological pyramids and nutrient cycling"],
+["Class XII — Biodiversity and Conservation","Patterns and importance of biodiversity","Biodiversity loss and threats","In-situ and ex-situ conservation"]
+]
+};
+const allChapters=()=>Object.entries(topics).flatMap(([subject,arr])=>arr.map(([name,...subs])=>({id:chapterId(subject,name),subject,name,subs})));
+const chapterId=(s,c)=>`${s}::${c}`;
+function freshState(){return {version:2,chapters:{},tasks:[],sessions:[],revisions:[],revisionHistory:[],practiceSets:[],mocks:[],monthlyGoals:[],starred:{},errors:'',preferences:{dailyGoal:180,accuracyGoal:75},targetDate:'2028-02-01',theme:'dark'};}
+function safeRead(){try{const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return freshState();const p=JSON.parse(raw);return p&&typeof p==='object'?p:freshState()}catch(e){return freshState()}}
+let state=safeRead();
+function migrateAndNormalize(){
+ const defaults=freshState();
+ state={...defaults,...state,preferences:{...defaults.preferences,...(state.preferences||{})}};
+ state.chapters=state.chapters&&typeof state.chapters==='object'?state.chapters:{};
+ state.tasks=Array.isArray(state.tasks)?state.tasks:[];state.sessions=Array.isArray(state.sessions)?state.sessions:[];
+ state.revisions=Array.isArray(state.revisions)?state.revisions:[];state.revisionHistory=Array.isArray(state.revisionHistory)?state.revisionHistory:[];
+ state.practiceSets=Array.isArray(state.practiceSets)?state.practiceSets:[];state.mocks=Array.isArray(state.mocks)?state.mocks:[];
+ state.starred=state.starred&&typeof state.starred==='object'?state.starred:{};
+ state.monthlyGoals=Array.isArray(state.monthlyGoals)?state.monthlyGoals:[];
+ if(!state.monthlyGoals.length)state.monthlyGoals=[{id:uid(),text:'Complete one full mock test',done:false}];
+ // Migrate original topic-status data into the expanded schema without discarding the original keys.
+ const legacy=state;
+ for(const ch of allChapters()){
+   let rec=legacy.chapters[ch.id];
+   if(!rec||typeof rec!=='object'){
+     const oldKey=`${ch.subject}-${ch.name}`;
+     const oldStatus=legacy[oldKey];
+     rec={theory:oldStatus==='2'?'done':oldStatus==='1'?'learning':'not-started',practice:'not-started',revision:'not-started',notes:'',starred:!!legacy.starred?.[oldKey],subtopics:{}};
+   }
+   rec={theory:['not-started','learning','done'].includes(rec.theory)?rec.theory:'not-started',
+        practice:['not-started','learning','done'].includes(rec.practice)?rec.practice:'not-started',
+        revision:['not-started','learning','done'].includes(rec.revision)?rec.revision:'not-started',
+        notes:typeof rec.notes==='string'?rec.notes:'',starred:!!rec.starred,subtopics:rec.subtopics&&typeof rec.subtopics==='object'?rec.subtopics:{}};
+   for(const sub of ch.subs){if(!['not-started','learning','done'].includes(rec.subtopics[sub]))rec.subtopics[sub]='not-started';}
+   state.chapters[ch.id]=rec;
+ }
+ const legacyTarget=localStorage.getItem(LEGACY_TARGET_KEY);
+ if(!state.targetDate||state.targetDate==='2028-02-01')state.targetDate=legacyTarget?.slice(0,10)||'2028-02-01';
+ if(localStorage.getItem('iat_theme')==='light')state.theme='light';
+ state.targetDate=/^\d{4}-\d{2}-\d{2}$/.test(state.targetDate)?state.targetDate:'2028-02-01';
+ state.tasks=state.tasks.filter(x=>x&&typeof x==='object'&&typeof x.title==='string').map(x=>({...x,id:x.id||uid(),date:/^\d{4}-\d{2}-\d{2}$/.test(x.date)?x.date:todayISO(),done:!!x.done,minutes:boundedNum(x.minutes,45,1,1440)}));
+ state.sessions=state.sessions.filter(x=>x&&typeof x==='object'&&Number.isFinite(Number(x.minutes))&&Number(x.minutes)>0);
+ state.revisions=state.revisions.filter(x=>x&&typeof x==='object'&&x.chapterId&&/^\d{4}-\d{2}-\d{2}$/.test(x.dueDate)).map(x=>({...x,id:x.id||uid(),note:typeof x.note==='string'?x.note:''}));
+ state.practiceSets=state.practiceSets.filter(x=>x&&typeof x==='object'&&Number.isFinite(Number(x.attempted))&&Number(x.attempted)>=0);
+ state.mocks=state.mocks.filter(x=>x&&typeof x==='object'&&Number.isFinite(Number(x.score))&&Number.isFinite(Number(x.maxScore))&&Number(x.maxScore)>0);
+}
+function boundedNum(v,def,min,max){const n=Number(v);return Number.isFinite(n)?Math.min(max,Math.max(min,n)):def}
+migrateAndNormalize();
+function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));localStorage.setItem(LEGACY_TARGET_KEY,state.targetDate+'T00:00:00');localStorage.setItem('iat_theme',state.theme);}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function getChapter(id){return allChapters().find(c=>c.id===id)}
+function chapterRec(id){return state.chapters[id]}
+function isReady(id){const r=chapterRec(id);return r&&r.theory==='done'&&r.practice==='done'&&r.revision==='done'}
+function isWeak(id){const r=chapterRec(id);const logs=state.practiceSets.filter(p=>p.chapterId===id&&Number(p.attempted)>0);const accuracy=logs.length?logs.reduce((a,p)=>a+Number(p.correct),0)/logs.reduce((a,p)=>a+Number(p.attempted),0):null;return !isReady(id)||accuracy!==null&&accuracy<state.preferences.accuracyGoal/100}
+function dateOffset(days){const d=new Date();d.setDate(d.getDate()+days);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function fmtDate(iso){if(!iso)return '—';const d=new Date(iso+'T12:00:00');return Number.isNaN(d.getTime())?iso:d.toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'})}
+function statusLabel(v){return ({'not-started':'Not started',learning:'Learning',done:'Complete'})[v]||'Not started'}
+function statusSelect(value,attrs=''){return `<select ${attrs}><option value="not-started" ${value==='not-started'?'selected':''}>Not started</option><option value="learning" ${value==='learning'?'selected':''}>Learning</option><option value="done" ${value==='done'?'selected':''}>Complete</option></select>`}
+function populateChapterSelect(subjectSelectId,chapterSelectId){const ss=document.getElementById(subjectSelectId),cs=document.getElementById(chapterSelectId);if(!ss||!cs)return;const priorS=ss.value;ss.innerHTML=Object.keys(topics).map(s=>`<option>${esc(s)}</option>`).join('');if(Object.keys(topics).includes(priorS))ss.value=priorS;const update=()=>{const s=ss.value,old=cs.value;cs.innerHTML=topics[s].map(([name])=>`<option value="${esc(chapterId(s,name))}">${esc(name)}</option>`).join('');if(topics[s].some(([name])=>chapterId(s,name)===old))cs.value=old};ss.onchange=update;update()}
+function setView(name){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+name));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===name));if(name==='dashboard')renderDashboard();if(name==='planner')renderPlanner();if(name==='syllabus')renderSyllabus();if(name==='revision')renderRevisions();if(name==='analytics')renderAnalytics();if(name==='settings')renderSettings();window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.goto)));
+function applyTheme(){document.body.classList.toggle('light',state.theme==='light');document.getElementById('themeBtn').textContent=state.theme==='light'?'🌙 Dark mode':'☀️ Light mode'}
+document.getElementById('themeBtn').onclick=()=>{state.theme=state.theme==='light'?'dark':'light';applyTheme();save()};
+function updateCountdown(){const target=new Date(state.targetDate+'T00:00:00').getTime();let diff=target-Date.now();if(!Number.isFinite(target)||diff<=0){['months','days','hours','mins'].forEach(id=>document.getElementById(id).textContent='0');return}let cursor=new Date();let months=(new Date(target).getFullYear()-cursor.getFullYear())*12+new Date(target).getMonth()-cursor.getMonth();let temp=new Date(cursor);temp.setMonth(temp.getMonth()+months);if(temp.getTime()>target){months--;temp=new Date(cursor);temp.setMonth(temp.getMonth()+months)}let rem=target-temp.getTime();const days=Math.floor(rem/86400000);rem%=86400000;const hours=Math.floor(rem/3600000);rem%=3600000;const mins=Math.floor(rem/60000);document.getElementById('months').textContent=months;document.getElementById('days').textContent=days;document.getElementById('hours').textContent=hours;document.getElementById('mins').textContent=mins}
+function updateTargetDisplay(){document.getElementById('targetDisplay').textContent=fmtDate(state.targetDate)}
+document.getElementById('editTarget').onclick=()=>{const v=prompt('Target date (YYYY-MM-DD)',state.targetDate);if(v===null)return;if(!/^\d{4}-\d{2}-\d{2}$/.test(v)||Number.isNaN(new Date(v+'T00:00:00').getTime())){alert('Please enter a valid date in YYYY-MM-DD format.');return}state.targetDate=v;save();updateTargetDisplay();updateCountdown()};
+function completedCount(){return allChapters().filter(c=>isReady(c.id)).length}
+function todaySessions(){return state.sessions.filter(s=>s.date===todayISO())}
+function todayTasks(){return state.tasks.filter(t=>t.date===todayISO())}
+function dueRevisions(){return state.revisions.filter(r=>r.dueDate<=todayISO())}
+function weakChapters(){return allChapters().filter(c=>isWeak(c.id))}
+function renderDashboard(){
+ const all=allChapters(),ready=completedCount(),pct=Math.round(ready/all.length*100);document.getElementById('masteredCount').textContent=ready;document.getElementById('overallPct').textContent=pct+'%';document.getElementById('overallBar').style.width=pct+'%';document.getElementById('coverageNote').textContent=`${all.filter(c=>chapterRec(c.id).theory==='done').length}/${all.length} theory complete · ${all.filter(c=>chapterRec(c.id).practice==='done').length}/${all.length} practice complete · ${all.filter(c=>chapterRec(c.id).revision==='done').length}/${all.length} revision complete`;
+ const ts=todayTasks(),done=ts.filter(t=>t.done).length,minutes=todaySessions().reduce((n,s)=>n+Number(s.minutes||0),0),due=dueRevisions().length,weak=weakChapters().length;
+ document.getElementById('todayTaskCount').textContent=`${done}/${ts.length}`;document.getElementById('todayMinutes').textContent=`${minutes} min`;document.getElementById('dueCount').textContent=due;document.getElementById('weakCount').textContent=weak;
+ const alert=document.getElementById('revisionAlert');alert.classList.toggle('hidden',!due);alert.textContent=due?`⚠️ ${due} revision(s) due or overdue. Open the revision queue and record your recall outcome.`:'';
+ document.getElementById('todayTasks').innerHTML=ts.length?ts.map(taskHTML).join(''):'<div class="empty">No tasks planned for today. Add one in the Planner.</div>';
+ document.getElementById('todayRevisions').innerHTML=dueRevisions().slice(0,6).map(revisionHTML).join('')||'<div class="empty">No revisions due today.</div>';
+ document.getElementById('weakTopics').innerHTML=weakChapters().slice(0,8).map(c=>{const r=chapterRec(c.id);return `<div class="item"><div class="grow"><div class="item-title">${esc(c.name)}</div><div class="muted">${esc(c.subject)} · Theory: ${statusLabel(r.theory)} · Practice: ${statusLabel(r.practice)} · Revision: ${statusLabel(r.revision)}</div></div><button class="secondary tiny" data-chapter="${esc(c.id)}">Update</button></div>`}).join('')||'<div class="empty">No weak topics based on current self-assessments.</div>';
+ document.getElementById('weakTopics').querySelectorAll('[data-chapter]').forEach(b=>b.onclick=()=>{setView('syllabus');document.getElementById('chapterSearch').value=getChapter(b.dataset.chapter)?.name||'';renderSyllabus()});
+ document.getElementById('subjectOverview').innerHTML=Object.keys(topics).map(s=>{const cs=all.filter(c=>c.subject===s),n=cs.filter(c=>isReady(c.id)).length,p=Math.round(n/cs.length*100);return `<div class="bar-row"><span>${esc(s)}</span><div class="bar-track"><span style="width:${p}%"></span></div><strong>${p}%</strong></div>`}).join('');
+ document.getElementById('recentSessions').innerHTML=state.sessions.slice().sort((a,b)=>(b.createdAt||0)-(a.createdAt||0)).slice(0,3).map(s=>`<div class="item"><div class="grow"><div class="item-title">${esc(s.minutes)} min · ${esc(s.title||getChapter(s.chapterId)?.name||'Study session')}</div><div class="muted">${fmtDate(s.date)} · ${esc(s.subject||'')} ${s.notes?'· '+esc(s.notes):''}</div></div></div>`).join('')||'<div class="empty">Your study sessions will appear here.</div>';
+ renderMonthlyGoals();
+}
+function renderMonthlyGoals(){
+ const root=document.getElementById('monthlyGoalsList');if(!root)return;
+ root.innerHTML=state.monthlyGoals.map(g=>`<div class="item ${g.done?'done':''}"><input type="checkbox" data-goal-check="${esc(g.id)}" ${g.done?'checked':''} aria-label="Mark monthly goal complete"><div class="grow"><div class="item-title">${esc(g.text)}</div></div><button class="danger tiny" data-goal-delete="${esc(g.id)}" aria-label="Delete goal">✕</button></div>`).join('')||'<div class="empty">No monthly goals yet.</div>';
+ const done=state.monthlyGoals.filter(g=>g.done).length,pct=state.monthlyGoals.length?Math.round(done/state.monthlyGoals.length*100):0;
+ document.getElementById('monthPct').textContent=`${pct}% completed (${done}/${state.monthlyGoals.length})`;document.getElementById('monthBar').style.width=pct+'%';
+ root.querySelectorAll('[data-goal-check]').forEach(el=>el.onchange=()=>{const g=state.monthlyGoals.find(g=>g.id===el.dataset.goalCheck);if(g)g.done=el.checked;save();renderMonthlyGoals()});
+ root.querySelectorAll('[data-goal-delete]').forEach(el=>el.onclick=()=>{state.monthlyGoals=state.monthlyGoals.filter(g=>g.id!==el.dataset.goalDelete);save();renderMonthlyGoals()});
+}
+document.getElementById('monthlyGoalForm').onsubmit=e=>{e.preventDefault();const input=document.getElementById('newMonthlyGoal'),text=input.value.trim();if(!text)return;state.monthlyGoals.push({id:uid(),text,done:false});input.value='';save();renderMonthlyGoals()};
+function taskHTML(t){return `<div class="item ${t.done?'done':''}"><input type="checkbox" aria-label="Mark task complete" data-task-check="${esc(t.id)}" ${t.done?'checked':''}><div class="grow"><div class="item-title">${esc(t.title)}</div><div class="muted">${fmtDate(t.date)} · ${esc(t.subject||'General')} · ${t.minutes} min · ${esc(t.kind||'Study')} ${t.priority==='High'?'· High priority':''}</div></div><button class="danger tiny" data-task-delete="${esc(t.id)}" aria-label="Delete task">✕</button></div>`}
+function bindTaskItems(root){root.querySelectorAll('[data-task-check]').forEach(el=>el.onchange=()=>{const t=state.tasks.find(t=>t.id===el.dataset.taskCheck);if(t){t.done=el.checked;t.completedAt=t.done?Date.now():null;save();renderDashboard();renderPlanner()}});root.querySelectorAll('[data-task-delete]').forEach(el=>el.onclick=()=>{if(confirm('Delete this task?')){state.tasks=state.tasks.filter(t=>t.id!==el.dataset.taskDelete);save();renderDashboard();renderPlanner()}})}
+function revisionHTML(r){const ch=getChapter(r.chapterId);return `<div class="item"><div class="grow"><div class="item-title">${esc(ch?.name||r.chapterId)}</div><div class="muted">${esc(ch?.subject||'')} · Due ${fmtDate(r.dueDate)} ${r.note?'· '+esc(r.note):''}</div><div class="row" style="margin-top:7px"><button class="tiny" data-recall="recalled" data-revision="${esc(r.id)}">Recalled</button><button class="secondary tiny" data-recall="partial" data-revision="${esc(r.id)}">Partial</button><button class="secondary tiny" data-recall="forgot" data-revision="${esc(r.id)}">Relearn</button></div></div><button class="danger tiny" data-revision-delete="${esc(r.id)}">✕</button></div>`}
+function bindRevisionItems(root){root.querySelectorAll('[data-recall]').forEach(b=>b.onclick=()=>recordRecall(b.dataset.revision,b.dataset.recall));root.querySelectorAll('[data-revision-delete]').forEach(b=>b.onclick=()=>{state.revisions=state.revisions.filter(r=>r.id!==b.dataset.revisionDelete);save();renderRevisions();renderDashboard()})}
+function recordRecall(id,outcome){const r=state.revisions.find(x=>x.id===id);if(!r)return;const ch=getChapter(r.chapterId);state.revisionHistory.unshift({id:uid(),chapterId:r.chapterId,date:todayISO(),outcome,note:r.note||''});state.revisions=state.revisions.filter(x=>x.id!==id);const rec=chapterRec(r.chapterId);rec.revision=outcome==='recalled'?'done':outcome==='partial'?'learning':'not-started';if(outcome==='recalled'){const intervals=[3,7,14,30,60];const past=state.revisionHistory.filter(h=>h.chapterId===r.chapterId&&h.outcome==='recalled').length;state.revisions.push({id:uid(),chapterId:r.chapterId,dueDate:dateOffset(intervals[Math.min(past,intervals.length-1)]),note:'Spaced review'});}else{state.revisions.push({id:uid(),chapterId:r.chapterId,dueDate:dateOffset(outcome==='partial'?2:1),note:outcome==='partial'?'Recheck uncertain parts':'Relearn core ideas'});}save();renderRevisions();renderDashboard();renderSyllabus()}
+function renderPlanner(){
+ const mode=window.plannerMode||'date',chosen=document.getElementById('plannerDate').value||todayISO();let list=state.tasks.slice();
+ if(mode==='date')list=list.filter(t=>t.date===chosen);else if(mode==='week'){const start=new Date();start.setHours(0,0,0,0);const day=(start.getDay()+6)%7;start.setDate(start.getDate()-day);const end=new Date(start);end.setDate(start.getDate()+7);list=list.filter(t=>{const d=new Date(t.date+'T12:00:00');return d>=start&&d<end})}
+ list.sort((a,b)=>a.date.localeCompare(b.date)||(a.done-b.done)||((a.priority==='High'?-1:0)-(b.priority==='High'?-1:0)));
+ document.getElementById('plannerSummary').textContent=`${list.filter(t=>t.done).length}/${list.length} completed · ${list.reduce((n,t)=>n+Number(t.minutes||0),0)} planned minutes`;
+ document.getElementById('plannerTasks').innerHTML=list.length?list.map(taskHTML).join(''):'<div class="empty">No tasks in this view.</div>';bindTaskItems(document.getElementById('plannerTasks'));
+ const start=new Date();start.setHours(0,0,0,0);start.setDate(start.getDate()-((start.getDay()+6)%7));const end=new Date(start);end.setDate(start.getDate()+7);const week=state.tasks.filter(t=>{const d=new Date(t.date+'T12:00:00');return d>=start&&d<end});const wd=week.filter(t=>t.done).length;document.getElementById('weeklyReview').innerHTML=`<div class="stats"><div class="stat"><div class="num">${wd}/${week.length}</div><small>Tasks completed</small></div><div class="stat"><div class="num">${week.reduce((n,t)=>n+Number(t.minutes||0),0)}</div><small>Planned minutes</small></div><div class="stat"><div class="num">${week.filter(t=>t.done).reduce((n,t)=>n+Number(t.minutes||0),0)}</div><small>Minutes in completed tasks</small></div><div class="stat"><div class="num">${state.sessions.filter(s=>{const d=new Date((s.date||todayISO())+'T12:00:00');return d>=start&&d<end}).reduce((n,s)=>n+Number(s.minutes||0),0)}</div><small>Logged study minutes</small></div></div><p class="note" style="margin-top:10px">Review: What worked? Which concept needs another explanation? Which unfinished task should move into next week?</p>`;
+}
+function renderSyllabus(){
+ const q=document.getElementById('chapterSearch').value.trim().toLowerCase(),sf=document.getElementById('subjectFilter').value,cf=document.getElementById('chapterFilter').value;const root=document.getElementById('syllabusList');let out='';
+ for(const subject of Object.keys(topics)){if(sf!=='all'&&sf!==subject)continue;const chs=allChapters().filter(c=>c.subject===subject&&(`${c.name} ${c.subs.join(' ')}`.toLowerCase().includes(q)));const filtered=chs.filter(c=>{const r=chapterRec(c.id);if(cf==='weak')return isWeak(c.id);if(cf==='starred')return r.starred;if(cf==='incomplete')return !isReady(c.id);if(cf==='ready')return isReady(c.id);return true});if(!filtered.length)continue;
+ out+=`<div class="section"><div class="subject-heading"><h2>${esc(subject)}</h2><span class="pill">${filtered.filter(c=>isReady(c.id)).length}/${filtered.length} ready in current view</span></div>`;
+ filtered.forEach(c=>{const r=chapterRec(c.id),subs=c.subs,subDone=subs.filter(s=>r.subtopics[s]==='done').length;out+=`<details class="chapter"><summary><div><div class="chapter-title">${r.starred?'⭐ ':''}${esc(c.name)}</div><div class="chapter-meta"><span class="pill">Subtopics ${subDone}/${subs.length}</span><span class="pill ${isReady(c.id)?'green':isWeak(c.id)?'yellow':''}">${isReady(c.id)?'Exam-ready':isWeak(c.id)?'In progress / weak':'In progress'}</span></div></div><span aria-hidden="true">⌄</span></summary><div class="chapter-body"><div class="mastery-grid"><div class="mastery-box"><label>Theory</label>${statusSelect(r.theory,`data-chapter="${esc(c.id)}" data-field="theory" aria-label="${esc(c.name)} theory status"`)}</div><div class="mastery-box"><label>Practice</label>${statusSelect(r.practice,`data-chapter="${esc(c.id)}" data-field="practice" aria-label="${esc(c.name)} practice status"`)}</div><div class="mastery-box"><label>Revision</label>${statusSelect(r.revision,`data-chapter="${esc(c.id)}" data-field="revision" aria-label="${esc(c.name)} revision status"`)}</div></div><div class="row" style="margin-bottom:8px"><button class="secondary tiny" data-star="${esc(c.id)}">${r.starred?'★ Remove priority':'☆ Mark priority'}</button><span class="note">Mastery requires all three fields marked Complete.</span></div><strong>Subtopics</strong>${subs.map(s=>`<div class="subtopic"><span>${esc(s)}</span>${statusSelect(r.subtopics[s],`data-subtopic="${esc(c.id)}" data-sub="${esc(s)}" aria-label="${esc(s)} status"`)}</div>`).join('')}<div class="field" style="margin-top:12px"><label>Chapter notes / misconceptions</label><textarea rows="2" maxlength="2000" data-notes="${esc(c.id)}" placeholder="What is unclear? What should you revisit?">${esc(r.notes)}</textarea></div><div class="note" style="margin-top:7px">Logged practice sets: ${state.practiceSets.filter(p=>p.chapterId===c.id).length} · Revision history: ${state.revisionHistory.filter(h=>h.chapterId===c.id).length}</div></div></details>`});out+='</div>'}
+ root.innerHTML=out||'<div class="empty">No chapters match these filters.</div>';
+ root.querySelectorAll('[data-chapter][data-field]').forEach(el=>el.onchange=()=>{chapterRec(el.dataset.chapter)[el.dataset.field]=el.value;save();renderSyllabus();renderDashboard()});
+ root.querySelectorAll('[data-subtopic]').forEach(el=>el.onchange=()=>{chapterRec(el.dataset.subtopic).subtopics[el.dataset.sub]=el.value;save();renderSyllabus();renderDashboard()});
+ root.querySelectorAll('[data-star]').forEach(el=>el.onclick=()=>{const r=chapterRec(el.dataset.star);r.starred=!r.starred;save();renderSyllabus();renderDashboard()});
+ root.querySelectorAll('[data-notes]').forEach(el=>el.onchange=()=>{chapterRec(el.dataset.notes).notes=el.value;save()});
+}
+function renderRevisions(){const filter=document.getElementById('revisionFilter').value;let list=state.revisions.slice().sort((a,b)=>a.dueDate.localeCompare(b.dueDate));if(filter==='due')list=list.filter(r=>r.dueDate<=todayISO());if(filter==='future')list=list.filter(r=>r.dueDate>todayISO());const root=document.getElementById('revisionList');root.innerHTML=list.length?list.map(revisionHTML).join(''):'<div class="empty">No revisions in this queue.</div>';bindRevisionItems(root);const hist=document.getElementById('revisionHistory');hist.innerHTML=state.revisionHistory.slice(0,25).map(h=>`<div class="item"><div class="grow"><div class="item-title">${esc(getChapter(h.chapterId)?.name||h.chapterId)} · ${({recalled:'Recalled',partial:'Partial recall',forgot:'Needs relearning'})[h.outcome]||h.outcome}</div><div class="muted">${fmtDate(h.date)}</div></div></div>`).join('')||'<div class="empty">No review outcomes recorded yet.</div>'}
+function chartBars(entries,formatter=v=>v){if(!entries.length)return '<div class="empty">Not enough data yet.</div>';return entries.map(([label,val,width])=>`<div class="bar-row"><span title="${esc(label)}">${esc(label)}</span><div class="bar-track"><span style="width:${Math.max(0,Math.min(100,width))}%"></span></div><strong>${esc(formatter(val))}</strong></div>`).join('')}
+function renderAnalytics(){
+ const p=state.practiceSets,attempted=p.reduce((n,x)=>n+Number(x.attempted||0),0),correct=p.reduce((n,x)=>n+Number(x.correct||0),0);document.getElementById('practiceSets').textContent=p.length;document.getElementById('practiceAccuracy').textContent=attempted?Math.round(correct/attempted*100)+'%':'—';document.getElementById('mockCount').textContent=state.mocks.length;const mocks=state.mocks.slice().sort((a,b)=>a.date.localeCompare(b.date));const latest=mocks[mocks.length-1];document.getElementById('latestMock').textContent=latest?`${Math.round(latest.score/latest.maxScore*100)}%`:'—';
+ document.getElementById('accuracyBySubject').innerHTML=chartBars(Object.keys(topics).map(s=>{const a=p.filter(x=>x.subject===s);const att=a.reduce((n,x)=>n+Number(x.attempted),0),cor=a.reduce((n,x)=>n+Number(x.correct),0);return [s,att?Math.round(cor/att*100):0,att?cor/att*100:0]}).filter(x=>p.some(a=>a.subject===x[0])),v=>v+'%');
+ document.getElementById('mockTrend').innerHTML=chartBars(mocks.slice(-8).map(m=>[`${m.date.slice(5)} ${m.name}`,Math.round(m.score/m.maxScore*100),m.score/m.maxScore*100]),v=>v+'%');
+ document.getElementById('practiceHistory').innerHTML=p.length?`<table><thead><tr><th>Date</th><th>Subject / chapter</th><th>Source</th><th>Attempted</th><th>Correct</th><th>Accuracy</th><th>Mistakes</th><th></th></tr></thead><tbody>${p.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x=>`<tr><td>${fmtDate(x.date)}</td><td>${esc(x.subject)}<br>${esc(getChapter(x.chapterId)?.name||'')}</td><td>${esc(x.source||'—')}</td><td>${x.attempted}</td><td>${x.correct}</td><td>${x.attempted?Math.round(x.correct/x.attempted*100)+'%':'—'}</td><td>${esc(x.mistakes||'—')}</td><td><button class="danger tiny" data-del-practice="${esc(x.id)}">Delete</button></td></tr>`).join('')}</tbody></table>`:'<div class="empty">No practice sets logged yet.</div>';
+ document.getElementById('mockHistory').innerHTML=state.mocks.length?`<table><thead><tr><th>Date</th><th>Test</th><th>Score</th><th>Percentage</th><th>Attempted / correct / wrong</th><th>Reflection</th><th></th></tr></thead><tbody>${mocks.slice().reverse().map(x=>`<tr><td>${fmtDate(x.date)}</td><td>${esc(x.name)}</td><td>${x.score} / ${x.maxScore}</td><td>${Math.round(x.score/x.maxScore*100)}%</td><td>${x.attempted||0} / ${x.correct||0} / ${x.wrong||0}</td><td>${esc(x.notes||'—')}</td><td><button class="danger tiny" data-del-mock="${esc(x.id)}">Delete</button></td></tr>`).join('')}</tbody></table>`:'<div class="empty">No mock tests logged yet.</div>';
+ document.querySelectorAll('[data-del-practice]').forEach(b=>b.onclick=()=>{if(confirm('Delete this practice set?')){state.practiceSets=state.practiceSets.filter(x=>x.id!==b.dataset.delPractice);save();renderAnalytics();renderDashboard()}});
+ document.querySelectorAll('[data-del-mock]').forEach(b=>b.onclick=()=>{if(confirm('Delete this mock test?')){state.mocks=state.mocks.filter(x=>x.id!==b.dataset.delMock);save();renderAnalytics()}});
+ document.getElementById('errorLog').value=state.errors||'';
+}
+function renderSettings(){document.getElementById('settingsTarget').value=state.targetDate;document.getElementById('studyGoal').value=state.preferences.dailyGoal;document.getElementById('accuracyGoal').value=state.preferences.accuracyGoal}
+function scheduleManualRevision(){const id=document.getElementById('revisionChapter').value,date=document.getElementById('revisionDate').value,note=document.getElementById('revisionNote').value.trim();if(!id||!date){alert('Choose a chapter and date.');return}state.revisions.push({id:uid(),chapterId:id,dueDate:date,note});save();document.getElementById('revisionNote').value='';renderRevisions();renderDashboard()}
+document.getElementById('scheduleRevision').onclick=scheduleManualRevision;
+document.getElementById('revisionFilter').onchange=renderRevisions;
+document.getElementById('sessionForm').onsubmit=e=>{e.preventDefault();const chapterId=document.getElementById('sessionChapter').value,ch=getChapter(chapterId),minutes=boundedNum(document.getElementById('sessionMinutes').value,45,1,1440);state.sessions.unshift({id:uid(),date:todayISO(),createdAt:Date.now(),subject:ch?.subject||'',chapterId,minutes,notes:document.getElementById('sessionNotes').value.trim(),title:ch?.name||'Study session'});document.getElementById('sessionNotes').value='';save();renderDashboard()};
+document.getElementById('taskForm').onsubmit=e=>{e.preventDefault();const subject=document.getElementById('taskSubject').value,chapterId=document.getElementById('taskChapter').value,title=document.getElementById('taskTitle').value.trim();if(!title)return;state.tasks.push({id:uid(),date:document.getElementById('taskDate').value,subject,chapterId,title,minutes:boundedNum(document.getElementById('taskMinutes').value,45,1,1440),kind:document.getElementById('taskKind').value,priority:document.getElementById('taskPriority').value,done:false});document.getElementById('taskTitle').value='';save();renderPlanner();renderDashboard()};
+document.getElementById('showToday').onclick=()=>{window.plannerMode='date';document.getElementById('plannerDate').value=todayISO();renderPlanner()};
+document.getElementById('showWeek').onclick=()=>{window.plannerMode='week';renderPlanner()};
+document.getElementById('showAllTasks').onclick=()=>{window.plannerMode='all';renderPlanner()};
+document.getElementById('plannerDate').onchange=()=>{window.plannerMode='date';renderPlanner()};
+document.getElementById('practiceForm').onsubmit=e=>{e.preventDefault();const attempted=boundedNum(document.getElementById('qAttempted').value,0,0,100000),correct=boundedNum(document.getElementById('qCorrect').value,0,0,100000),wrongInput=document.getElementById('qWrong').value;const wrong=wrongInput===''?Math.max(0,attempted-correct):boundedNum(wrongInput,0,0,100000);if(correct>attempted||wrong>attempted||correct+wrong>attempted){alert('Correct and wrong answers cannot exceed attempted questions.');return}const chapterId=document.getElementById('practiceChapter').value,ch=getChapter(chapterId);state.practiceSets.unshift({id:uid(),date:document.getElementById('practiceDate').value,subject:ch?.subject||'',chapterId,source:document.getElementById('practiceSource').value.trim(),attempted,correct,wrong,minutes:boundedNum(document.getElementById('qTime').value,0,0,1440),mistakes:document.getElementById('practiceMistakes').value.trim()});e.target.reset();document.getElementById('practiceDate').value=todayISO();document.getElementById('qAttempted').value=20;document.getElementById('qCorrect').value=14;document.getElementById('qWrong').value=6;document.getElementById('qTime').value=30;save();renderAnalytics();renderDashboard()};
+document.getElementById('mockForm').onsubmit=e=>{e.preventDefault();const score=Number(document.getElementById('mockScore').value),maxScore=Number(document.getElementById('mockMax').value),attempted=boundedNum(document.getElementById('mockAttempted').value,0,0,100000),correct=boundedNum(document.getElementById('mockCorrect').value,0,0,100000),wrong=boundedNum(document.getElementById('mockWrong').value,0,0,100000);if(!Number.isFinite(score)||!Number.isFinite(maxScore)||maxScore<=0||score<0||score>maxScore){alert('Enter a score between zero and the maximum score.');return}if(correct+wrong>attempted){alert('Correct plus wrong answers cannot exceed attempted questions.');return}state.mocks.push({id:uid(),date:document.getElementById('mockDate').value,name:document.getElementById('mockName').value.trim(),score,maxScore,attempted,correct,wrong,duration:boundedNum(document.getElementById('mockDuration').value,0,0,1440),notes:document.getElementById('mockNotes').value.trim()});e.target.reset();document.getElementById('mockDate').value=todayISO();save();renderAnalytics()};
+document.getElementById('errorLog').addEventListener('input',e=>{state.errors=e.target.value;save()});
+document.getElementById('chapterSearch').addEventListener('input',renderSyllabus);document.getElementById('subjectFilter').onchange=renderSyllabus;document.getElementById('chapterFilter').onchange=renderSyllabus;
+document.getElementById('saveSettings').onclick=()=>{const target=document.getElementById('settingsTarget').value,daily=Number(document.getElementById('studyGoal').value),acc=Number(document.getElementById('accuracyGoal').value);if(!target||!Number.isFinite(daily)||daily<1||daily>1440||!Number.isFinite(acc)||acc<1||acc>100){alert('Check target date, daily goal (1–1440 minutes), and accuracy goal (1–100%).');return}state.targetDate=target;state.preferences.dailyGoal=daily;state.preferences.accuracyGoal=acc;save();updateTargetDisplay();updateCountdown();renderDashboard();renderSyllabus();alert('Preferences saved.')};
+function downloadBackup(){save();const blob=new Blob([JSON.stringify({app:'IAT Study Command Centre',version:2,exportedAt:new Date().toISOString(),data:state},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`iat_tracker_backup_${todayISO()}.json`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function safeImportObject(parsed){const candidate=parsed&&parsed.data&&typeof parsed.data==='object'?parsed.data:parsed;if(!candidate||typeof candidate!=='object'||Array.isArray(candidate))throw new Error('Backup must contain a JSON object.');const allowed=freshState();const result={...allowed,...candidate,preferences:{...allowed.preferences,...(candidate.preferences||{})}};if(candidate.chapters!==undefined&&(typeof candidate.chapters!=='object'||candidate.chapters===null||Array.isArray(candidate.chapters)))throw new Error('Invalid chapters data.');for(const key of ['tasks','sessions','revisions','revisionHistory','practiceSets','mocks'])if(candidate[key]!==undefined&&!Array.isArray(candidate[key]))throw new Error(`Invalid ${key} data.`);return result}
+async function importBackupFile(file){try{if(file.size>5*1024*1024)throw new Error('Backup is larger than 5 MB.');const parsed=JSON.parse(await file.text());const candidate=safeImportObject(parsed);if(!confirm('Import this backup? A backup of the current data will download first.'))return;downloadBackup();state=candidate;migrateAndNormalize();save();location.reload()}catch(err){alert('Import failed: '+err.message)}}
+function bindImport(){document.getElementById('importFile').click()}
+['exportBtn','exportBtn2'].forEach(id=>document.getElementById(id).onclick=downloadBackup);
+['importBtn','importBtn2'].forEach(id=>document.getElementById(id).onclick=bindImport);
+document.getElementById('importFile').onchange=e=>{const f=e.target.files?.[0];if(f)importBackupFile(f);e.target.value=''};
+document.getElementById('resetBtn').onclick=()=>{if(confirm('This will delete all tracker progress, tasks, logs and preferences from this browser. Export a backup first if you may need the data. Continue?')){localStorage.removeItem(STORAGE_KEY);localStorage.removeItem(LEGACY_TARGET_KEY);localStorage.removeItem('iat_theme');location.reload()}};
+function init(){
+ applyTheme();updateTargetDisplay();updateCountdown();setInterval(updateCountdown,1000);
+ for(const [s,id] of [['sessionSubject','sessionChapter'],['taskSubject','taskChapter'],['revisionSubject','revisionChapter'],['practiceSubject','practiceChapter']])populateChapterSelect(s,id);
+ document.getElementById('subjectFilter').innerHTML='<option value="all">All subjects</option>'+Object.keys(topics).map(s=>`<option>${esc(s)}</option>`).join('');
+ ['taskDate','plannerDate','practiceDate','mockDate','revisionDate'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=todayISO()});
+ document.getElementById('sessionSubject').dispatchEvent(new Event('change'));document.getElementById('taskSubject').dispatchEvent(new Event('change'));document.getElementById('revisionSubject').dispatchEvent(new Event('change'));document.getElementById('practiceSubject').dispatchEvent(new Event('change'));
+ document.getElementById('plannerDate').value=todayISO();window.plannerMode='date';renderDashboard();renderPlanner();renderSyllabus();renderRevisions();renderAnalytics();renderSettings();save();
+}
+init();
+</script>
+</body>
+</html>
